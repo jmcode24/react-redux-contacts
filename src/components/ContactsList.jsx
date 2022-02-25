@@ -18,7 +18,7 @@ function ContactsList(props) {
                         <Accordion.Body as={Card.Body}>
                           <div className='d-flex justify-content-around'>
                             <Card.Text><span className='text-info text-center'>Name</span> <br/> {contact.name}</Card.Text>
-                            <Card.Text><span className='text-warning'>Contact</span> <br/> {contact.phone}</Card.Text>
+                            <Card.Text><span className='text-warning'>Phone Number</span> <br/> {contact.phone}</Card.Text>
                             <Card.Text><span className='text-primary'>Location</span> <br/> {contact.location}</Card.Text>
                           </div>
                         </Accordion.Body>
