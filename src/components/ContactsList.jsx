@@ -7,8 +7,7 @@ function ContactsList(props) {
     <div>
       <Container fluid>
         <Row>
-          <Col md='6' className='mx-auto mt-4'>
-            <h1 className='text-center text-danger'>Contacts List</h1>
+          <Col md='6' className='mx-auto'>
             {props.contacts.map((contact, index) => {
               return (
                 <Card className='mt-1' key={index}>
