@@ -62,7 +62,7 @@ function ContactsForm(props) {
             </InputGroup>
             <Button variant="outline-success" type="submit" className="w-100 mt-2">Add Contact</Button>
           </Form>
-          <h1 className='text-center text-danger mt-5'>{submitting ? 'No Contacts' : 'Contacts List'}</h1>
+          <h1 className='text-center text-secondary mt-5'>{submitting ? 'No Contacts' : 'Contacts List'}</h1>
           </Col>
         </Row>
       </Container>
