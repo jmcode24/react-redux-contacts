@@ -3,15 +3,19 @@ import { Container, Row, Col, Form, InputGroup, FormControl, Button } from 'reac
 import { ImUserCheck, ImPhone, ImLocation } from 'react-icons/im';
 import { v4 as uuid} from 'uuid';
 import { addContactAction } from '../actions/actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-function ContactsForm(props) {
+function ContactsForm() {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [location, setLocation] = useState('');
-  const [submitting, setSubmitting] = useState(true);
-
+  
+  
   const dispatch = useDispatch();
+  const contacts = useSelector((state) => {
+    return state.contacts;
+  });
+
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -27,7 +31,7 @@ function ContactsForm(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitting(false)
+    
 
     let newContact = {
       id: uuid(),
@@ -64,7 +68,7 @@ function ContactsForm(props) {
             </InputGroup>
             <Button variant="outline-success" type="submit" className="w-100 mt-2">Add Contact</Button>
           </Form>
-          <h1 className='text-center text-secondary mt-5'>{submitting ? 'No Contacts' : 'Contacts List'}</h1>
+          <h2 className='text-secondary text-center mt-5'>{contacts.length ? 'Contacts List' : 'No Contact'}</h2>
           </Col>
         </Row>
       </Container>
