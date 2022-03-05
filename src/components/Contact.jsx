@@ -58,7 +58,7 @@ function Contact(props) {
       </Card>
       <Modal show={isShowing} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Edit Contact</Modal.Title>
+          <Modal.Title>Edit Contact Information</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <InputGroup className="mb-2">
