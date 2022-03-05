@@ -1,29 +1,21 @@
 import React from 'react';
-import { Container, Row, Col, Card, Accordion } from 'react-bootstrap';
-import { connect } from 'react-redux';
+import { Container, Row, Col } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import Contact from './Contact'
 
-function ContactsList(props) {
+function ContactsList() {
+  const contacts = useSelector((state) => {
+    return state.contacts;
+  });
+
   return(
     <div>
       <Container fluid>
         <Row>
           <Col md='6' className='mx-auto'>
-            {props.contacts.map((contact, index) => {
+            {contacts.map((contact, index) => {
               return (
-                <Card className='mt-1' key={index}>
-                  <Accordion defaultActiveKey="0">
-                      <Accordion.Item eventKey="0">
-                        <Accordion.Header as={Card.Header}>Customer ID: {index + 1}</Accordion.Header>
-                        <Accordion.Body as={Card.Body}>
-                          <div className='d-flex justify-content-around'>
-                            <Card.Text><span className='text-info text-center'>Name</span> <br/> {contact.name}</Card.Text>
-                            <Card.Text><span className='text-warning'>Phone Number</span> <br/> {contact.phone}</Card.Text>
-                            <Card.Text><span className='text-primary'>Location</span> <br/> {contact.location}</Card.Text>
-                          </div>
-                        </Accordion.Body>
-                      </Accordion.Item>
-                  </Accordion>
-                </Card>
+                <Contact key={contact.id} contact={contact} index={index} />
               );
             })}
           </Col>
@@ -33,8 +25,5 @@ function ContactsList(props) {
   );
 };
 
-const sendDataAsProps = (state) => {
-  return {contacts: state.contacts};
-};
 
-export default connect(sendDataAsProps)(ContactsList);
+export default ContactsList;

@@ -3,13 +3,15 @@ import { Container, Row, Col, Form, InputGroup, FormControl, Button } from 'reac
 import { ImUserCheck, ImPhone, ImLocation } from 'react-icons/im';
 import { v4 as uuid} from 'uuid';
 import { addContactAction } from '../actions/actions';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 function ContactsForm(props) {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [location, setLocation] = useState('');
   const [submitting, setSubmitting] = useState(true);
+
+  const dispatch = useDispatch();
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -34,7 +36,7 @@ function ContactsForm(props) {
       location: location
     };
 
-    props.addContact(newContact);
+    dispatch(addContactAction(newContact));
 
     setName('');
     setPhone('');
@@ -70,8 +72,4 @@ function ContactsForm(props) {
   );
 };
 
-const sendActionAsProps = {
-  addContact: addContactAction,
-};
-
-export default connect(null, sendActionAsProps)(ContactsForm);
+export default ContactsForm;
