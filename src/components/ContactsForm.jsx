@@ -56,15 +56,15 @@ function ContactsForm() {
             <Form onSubmit={handleSubmit}>
             <InputGroup className="mb-2">
               <InputGroup.Text id="basic-addon1"><ImUserCheck /></InputGroup.Text>
-                <FormControl type="text" placeholder="Full Name" value={name} onChange={handleNameChange} aria-label="Name" aria-describedby="basic-addon1" />
+                <FormControl type="text" placeholder="Full Name" required value={name} onChange={handleNameChange} aria-label="Name" aria-describedby="basic-addon1" />
             </InputGroup>
             <InputGroup className="mb-2">
               <InputGroup.Text id="basic-addon1"><ImPhone /></InputGroup.Text>
-                <FormControl type="number" placeholder="Phone Number" value={phone} onChange={handlePhoneChange} aria-label="phone" aria-describedby="basic-addon1" />
+                <FormControl type="number" placeholder="Phone Number" required value={phone} onChange={handlePhoneChange} aria-label="phone" aria-describedby="basic-addon1" />
             </InputGroup>
             <InputGroup className="mb-2">
               <InputGroup.Text id="basic-addon1"><ImLocation /></InputGroup.Text>
-                <FormControl type="text" placeholder="Current Location" value={location} onChange={handleLocationChange} aria-label="location" aria-describedby="basic-addon1" />
+                <FormControl type="text" placeholder="Current Location" required value={location} onChange={handleLocationChange} aria-label="location" aria-describedby="basic-addon1" />
             </InputGroup>
             <Button variant="outline-success" type="submit" className="w-100 mt-2">Add Contact</Button>
           </Form>
