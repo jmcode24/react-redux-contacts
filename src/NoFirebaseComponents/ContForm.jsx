@@ -2,14 +2,16 @@ import React, {useState} from 'react';
 import { Container, Row, Col, Form, InputGroup, FormControl, Button } from 'react-bootstrap';
 import { ImUserCheck, ImPhone, ImLocation } from 'react-icons/im';
 import { v4 as uuid} from 'uuid';
-import { useSelector } from 'react-redux';
-import firebase from '../firebase/config';
+import { addContactAction } from '../actions/actions';
+import { useDispatch, useSelector } from 'react-redux';
 
 function ContactsForm() {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [location, setLocation] = useState('');
   
+  
+  const dispatch = useDispatch();
   const contacts = useSelector((state) => {
     return state.contacts;
   });
@@ -27,9 +29,8 @@ function ContactsForm() {
     setLocation(e.target.value);
   }
 
-  const handleSubmit = async (e) => {
-    try {
-      e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     
 
     let newContact = {
@@ -39,11 +40,7 @@ function ContactsForm() {
       location: location
     };
 
-    firebase.firestore().collection("contacts").doc(newContact.id).set(newContact);
-
-    } catch(error) {
-      console.log(error)
-    }
+    dispatch(addContactAction(newContact));
 
     setName('');
     setPhone('');

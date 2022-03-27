@@ -1,41 +1,34 @@
 import React, { useState } from 'react';
 import { Card, Accordion, Button, Modal, InputGroup, FormControl } from 'react-bootstrap';
+import { deleteContactAction, editContactAction } from '../actions/actions';
+import { useDispatch } from 'react-redux';
 import { ImUserCheck, ImPhone, ImLocation } from 'react-icons/im';
-import firebase from '../firebase/config';
 
 function Contact(props) {
   const contact = props.contact;
   const index = props.index;
+  const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    dispatch(deleteContactAction(contact.id))
+  };
 
   const [name, setName] = useState(contact.name);
   const [phone, setPhone] = useState(contact.phone);
   const [location, setLocation] = useState(contact.location);
   const [isShowing, setIsShowing] = useState(false);
 
-  const handleDelete = async () => {
-    try {
-      firebase.firestore().collection("contacts").doc(contact.id).delete();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const handleSubmit = () => {
+    let contactData = {
+      id: contact.id,
+      name: name,
+      phone: phone,
+      location: location,
+    };
 
-  const handleSubmit = async () => {
-    try {
-      let contactData = {
-        id: contact.id,
-        name: name,
-        phone: phone,
-        location: location,
-      };
-      
-      firebase.firestore().collection("contacts").doc(contact.id).update(contactData);
-      
-      handleClose();
+    dispatch(editContactAction(contact.id, contactData));
 
-    } catch(error) {
-      console.log(error);
-    }
+    handleClose();
   };
 
   const handleClose = () => {
