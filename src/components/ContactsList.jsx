@@ -22,7 +22,9 @@ function ContactsList() {
                 );
               })}
             </>
-          ) : ("")}
+          ) : (<>
+                <h3 className="text-secondary text-center mt-4 mb-2">No Contact</h3>
+              </>)}
           </Col>
         </Row>
       </Container>

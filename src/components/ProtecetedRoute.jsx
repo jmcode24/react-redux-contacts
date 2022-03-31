@@ -1,16 +1,13 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
 
-const ProtectedRoute = ({children, contact}) => {
+const ProtectedRoute = ({children}) => {
+  const contact = useSelector(state => state.auth.contact);
  if (!contact) return <Navigate to="/login" replace={true} />
 
   return children;
 };
 
-const mapStateToProps = (state) => {
-  return { contact: state.auth.contact};
-};
-
-export default connect(mapStateToProps)(ProtectedRoute);
+export default ProtectedRoute;

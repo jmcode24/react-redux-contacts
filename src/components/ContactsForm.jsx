@@ -57,7 +57,8 @@ function ContactsForm() {
       <Container>
         <Row>
           <Col md='6' className='mx-auto mt-2'>
-            <div className="text-start mb-3 mt-2">
+            <div className="d-flex justify-content-between mb-3 mt-2">
+              <h4 className="fw-bolder fst-italic mark text-dark">Contacts page</h4>
               <Button variant="danger" size="sm" onClick={signOut}>Log out</Button>
             </div>
             <Form onSubmit={handleSubmit}>

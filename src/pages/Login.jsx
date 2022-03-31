@@ -42,8 +42,8 @@ const Login = () => {
     <div>
       <Container>
         <Row>
-          <Col md="6" className="mx-auto bg-dark p-3 mt-5">
-          <h1 className="text-center fw-bold mt-2 mb-3 text-info fst-italic">Sign in</h1>
+          <Col md="6" className="mx-auto mt-5 shadow-lg p-3 mb-5 bg-body rounded">
+          <h1 className="text-center fw-bold mt-2 mb-3 text-warning fst-italic">Sign in</h1>
               <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label className="text-light fs-6 fw-bold">Email address</Form.Label>
@@ -71,7 +71,7 @@ const Login = () => {
                         <Spinner as="span" animation="grow" variant="light" size="sm" role="status" aria-hidden="true"/> Signing in
                       </i>) : ("Sign in")}
                   </Button>
-                  <Button variant="outline-warning" type="submit" onClick={signInWithGoogle}>
+                  <Button variant="outline-success" type="submit" onClick={signInWithGoogle}>
                     Sign in with Google
                   </Button>
                 </div>
