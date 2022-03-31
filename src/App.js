@@ -1,12 +1,24 @@
 import React, {useEffect} from 'react';
-import ContactsForm from './components/ContactsForm';
-import ContactsList from './components/ContactsList';
+import Router from './Router';
 import firebase from './firebase/config';
 import { useDispatch } from 'react-redux';
 import { setContacts } from './actions/actions';
+import { setContactDetails } from './actions/authAction';
 
 function App() {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((contact) => {
+      if (contact) {
+        //set user state to user details
+        dispatch(setContactDetails(contact));
+      } else {
+        //set user state to null
+        dispatch(setContactDetails(null))
+      }
+    });
+  });
 
   useEffect(() => {
     firebase.firestore().collection("contacts").orderBy("id", "desc").onSnapshot((document) => {
@@ -20,12 +32,7 @@ function App() {
     });
   }, []);
 
-  return (
-    <div>
-      <ContactsForm />
-      <ContactsList />
-    </div>
-  );
+  return ( <Router /> );
 }
 
 export default App;

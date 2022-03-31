@@ -5,19 +5,24 @@ import Contact from './Contact'
 
 function ContactsList() {
   const contacts = useSelector((state) => {
-    return state.contacts;
+    return state.contacts.contacts;
   });
 
   return(
     <div>
-      <Container fluid>
+      <Container>
         <Row>
           <Col md='6' className='mx-auto'>
-            {contacts.map((contact, index) => {
-              return (
-                <Contact key={contact.id} contact={contact} index={index} />
-              );
-            })}
+          {contacts.length ? (
+            <>
+            <h3 className="text-secondary text-center mt-4 mb-2">Contacts List</h3>
+              {contacts.map((contact, index) => {
+                return (
+                  <Contact key={contact.id} contact={contact} index={index} />
+                );
+              })}
+            </>
+          ) : ("")}
           </Col>
         </Row>
       </Container>

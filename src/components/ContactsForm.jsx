@@ -2,18 +2,12 @@ import React, {useState} from 'react';
 import { Container, Row, Col, Form, InputGroup, FormControl, Button } from 'react-bootstrap';
 import { ImUserCheck, ImPhone, ImLocation } from 'react-icons/im';
 import { v4 as uuid} from 'uuid';
-import { useSelector } from 'react-redux';
 import firebase from '../firebase/config';
 
 function ContactsForm() {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [location, setLocation] = useState('');
-  
-  const contacts = useSelector((state) => {
-    return state.contacts;
-  });
-
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -26,6 +20,14 @@ function ContactsForm() {
   const handleLocationChange = (e) => {
     setLocation(e.target.value);
   }
+
+  const signOut = async () => {
+    try {
+      firebase.auth().signOut();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleSubmit = async (e) => {
     try {
@@ -55,7 +57,9 @@ function ContactsForm() {
       <Container>
         <Row>
           <Col md='6' className='mx-auto mt-2'>
-            <h1 className="text-center text-success mb-3 mt-2">Redux Contacts App</h1>
+            <div className="text-start mb-3 mt-2">
+              <Button variant="danger" size="sm" onClick={signOut}>Log out</Button>
+            </div>
             <Form onSubmit={handleSubmit}>
             <InputGroup className="mb-2">
               <InputGroup.Text id="basic-addon1"><ImUserCheck /></InputGroup.Text>
@@ -71,7 +75,6 @@ function ContactsForm() {
             </InputGroup>
             <Button variant="outline-success" type="submit" className="w-100 mt-2">Add Contact</Button>
           </Form>
-          <h2 className='text-secondary text-center mt-5'>{contacts.length ? 'Contacts List' : 'No Contact'}</h2>
           </Col>
         </Row>
       </Container>

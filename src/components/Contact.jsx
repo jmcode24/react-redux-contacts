@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Accordion, Button, Modal, InputGroup, FormControl } from 'react-bootstrap';
+import { Row, Col, Card, Accordion, Button, Modal, InputGroup, FormControl } from 'react-bootstrap';
 import { ImUserCheck, ImPhone, ImLocation } from 'react-icons/im';
 import firebase from '../firebase/config';
 
@@ -44,25 +44,30 @@ function Contact(props) {
 
   return (
     <>
-      <Card className='mt-1 mb-2' key={index}>
+      <Row>
+        <Col>
+        <Card className='mt-1 mb-2' key={index}>
         <Accordion defaultActiveKey="0">
             <Accordion.Item eventKey="0">
-              <Accordion.Header as={Card.Header}>Customer ID: {index + 1}</Accordion.Header>
+              <Accordion.Header as={Card.Header}>Contact ID: {index + 1}</Accordion.Header>
               <Accordion.Body as={Card.Body}>
-                <div className='d-flex justify-content-around'>
-                  <Card.Text><span className='text-info text-center'>Name</span> <br/> {contact.name}</Card.Text>
-                  <Card.Text><span className='text-warning'>Phone Number</span> <br/> {contact.phone}</Card.Text>
-                  <Card.Text><span className='text-primary'>Location</span> <br/> {contact.location}</Card.Text>
-                </div>
-                <hr/>
-                <div className='d-flex justify-content-center'>
-                  <Button onClick={() => setIsShowing(true)}>Edit</Button>
-                  <Button variant='danger' className='ms-3' onClick={handleDelete}>Delete</Button>
+                <div className='d-flex justify-content-between'>
+                  <div>
+                    <Card.Text><span className='text-info fw-bold'>Name:</span>  {contact.name}</Card.Text>
+                    <Card.Text><span className='text-warning fw-bold'>Phone Number:</span>  {contact.phone}</Card.Text>
+                    <Card.Text><span className='text-success fw-bold'>Location:</span> {contact.location}</Card.Text>
+                  </div>
+                  <div className="me-2 bg-dark p-2 text-center">
+                    <Button variant="outline-primary" onClick={() => setIsShowing(true)}>Edit</Button> <br />
+                    <Button className="mt-3" variant='outline-danger' onClick={handleDelete}>Delete</Button>
+                  </div>
                 </div>
               </Accordion.Body>
             </Accordion.Item>
         </Accordion>
       </Card>
+        </Col>
+      </Row>
       <Modal show={isShowing} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Edit Contact Information</Modal.Title>
