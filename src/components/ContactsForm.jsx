@@ -59,7 +59,7 @@ function ContactsForm() {
           <Col md='6' className='mx-auto mt-2'>
             <div className="d-flex justify-content-between mb-3 mt-2">
               <h4 className="fw-bolder fst-italic mark text-dark">Contacts page</h4>
-              <Button variant="danger" size="sm" onClick={signOut}>Log out</Button>
+              <Button variant="danger" size="sm" onClick={signOut}>Sign out</Button>
             </div>
             <Form onSubmit={handleSubmit}>
             <InputGroup className="mb-2">
